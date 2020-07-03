@@ -31,7 +31,7 @@ render_init = None
 reached_last_frame = None
 
 ## Regex to catch current render status
-## 💡 Localization is unimportant since the matched keywords are always in english (as of Keyshot 8.2.0) 		
+## 💡 Localization is unimportant since the matched keywords are always in english (as of Keyshot 9.3.0) 		
 RENDER_WINDOW 		= re.compile(r'\"([^)]+)\"')
 RENDERING_ACTIVE	= re.compile(r'\"(.*?)\" \[(.*?)\] \([^\d]*(\d+)%\)') 											## "foo1.jpg" [1920 x 1080] (Rendering 50%)
 ANIMATION_ACTIVE 	= re.compile(r'\"([^)]+)\" \([^\d]*(\d+)/[0-9]\) \[([^)]+)\] \(([^)]+)\)$') 					## "bar1.3.jpg" (Animation Frame 3/6) [1920 x 1080] (Rendering 50%)
