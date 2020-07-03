@@ -1,29 +1,32 @@
 <img src="resources/readme_icon.png" align="right"/>
 
 # if-job-done
-> A if-keyshot-is-finished-rendering script
 
-IFJD is a Python script that scrapes the current active Keyshot render window and triggers a webhook when the render is complete. This webhook can, as in this case, be connected
-to a 3rd party app like IFTTT to send an email or push notification to your smartphone.
+> A _When is the freaking rendering done?_ script
+
+`if-job-done` is a Python script that scrapes the Keyshot render window and triggers a [IFTTT](https://ifttt.com/) webhook when the render job is complete. The webhook can then e.g. send a push notification or send an email (through IFTTT).
+
+Supports Keyshot `>= 6`.
 
 ## Installation
 
-Clone the repo wherever you'd like, then run `pip install --user --requirement requirements.txt` from the root directory.
+Clone the repo and run `pip install --user --requirement requirements.txt` from the root directory.
 
 #### Creating a IFTTT recipe
-Assuming that you will be using IFTTT, you must first create a so-called IFTTT recipe to receive and utilise the webhook.
-Medium write up soon.
+
+Assuming that you will be using IFTTT, you must first create a IFTTT recipe to get the webhook endpoint and connect it to a action Read the [IFTTT docs](https://platform.ifttt.com/docs) for more.
 
 ## Usage
 
-After the script has been started, it places itself in the taskbar <img src="resources/readme_tray.png" width="16"> and works in the background. When a rendering is started, it monitors the rendering and triggers a webhook when the rendering is finished or stopped (stopped manually or by a program crash).
+After the script has been started, it minimizes itself to the taskbar <img src="resources/readme_tray.png" width="16"> and runs in the background. The script must be stopped manually or the value `end_if_target_process_not_running` must be set to `true` in the [config](./cfg/config.ini) file.
 
-A right click on the icon brings up a context menu (Open config or quit program). The icon tooltip gives vague information about the current status (`Idle, rendering image, rendering animation`).
+Right click the taskbar icon to open the config file, exit the script or get status information about the current render (`Idle, rendering image, rendering animation`).
 
 ## Configuration
 
-Open the `config.ini` file make changes according to your wishes. Note that you must restart the script for the changes to take effect. 
-- `update_interval` - Interval in seconds in which the script is looking for a suitable Keyshot handle.
-- `finish_treshold` and `stop_treshold` - Treshold in seconds after which the webhook gets fired. These settings exist to prevent webhook spam when starting or stopping many short test renderings.
-- `end_if_target_process_not_running` - End the script if Keyshot is not running. Useful if Keyshot and the script are started at the same time.
-- `web_hook` - The actual webhook URL. The syntax for a usual IFTTT hook would be https://maker.ifttt.com/trigger/{eventName}/with/key/{key}
+Open the `config.ini` file to config the script. :warning: Note that the changes only become effective after the script is restarted.
+
+-   `update_interval` - Interval in seconds in which the script is looking for a suitable Keyshot handle.
+-   `finish_treshold` and `stop_treshold` - Treshold in seconds after which the webhook gets fired. These settings exist to prevent webhook spam when starting or stopping many short test renderings.
+-   `end_if_target_process_not_running` - End the script if Keyshot is not running. Useful if Keyshot and the script are started at the same time.
+-   `web_hook` - The actual webhook URL. E.g. https://maker.ifttt.com/trigger/{eventName}/with/key/{key}
