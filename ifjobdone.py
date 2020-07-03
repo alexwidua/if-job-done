@@ -1,3 +1,5 @@
+## Compatible with Keyshot 9.3.0
+
 ## 🚚
 import os
 import re
