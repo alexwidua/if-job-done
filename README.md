@@ -2,11 +2,13 @@
 
 # if-job-done
 
-> A _When is the freaking rendering done?_ script
-
-`if-job-done` is a Python script that scrapes the Keyshot render window and triggers a [IFTTT](https://ifttt.com/) webhook when the render job is complete. The webhook can then e.g. send a push notification or send an email (through IFTTT).
+`if-job-done` is a Python script that scrapes an active Keyshot instance and fires a webhook once the render state changes (finished or stopped). The webhook can be connected to e.g. [IFTTT](https://ifttt.com/) to send a push notification or email once the rendering is done.
 
 Supports Keyshot `>= 6`.
+
+## Motivation
+
+In larger computer labs there is the problem that render workstations often remain occupied for an unnecessarily long time, even though the render job is already finished. This is due to the fact that students do not have any remote information about the status of their renderings and therefore only sporadically check the workstation every few hours. This script is a robust solution to inform (e.g.) students about a finished rendering or when a render job stopped unexpectedly. With this script the usage and 'downtime' of each workstations can be optimized. The script was succesfully used in a medium sized lab (university, 30-40 workstations).
 
 ## Installation
 
